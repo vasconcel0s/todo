@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Table, Header } from "semantic-ui-react";
 import "./todo.css";
+import { Link } from "react-router-dom";
 
 export default function List() {
   const [APIData, setAPIData] = useState([]);
@@ -40,6 +41,11 @@ export default function List() {
           })}
         </Table.Body>
       </Table>
+      <div>
+        <Link to="add" class="ui primary button">
+          Adicionar
+        </Link>
+      </div>
     </div>
   );
 }
