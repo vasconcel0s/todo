@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Table, Header } from "semantic-ui-react";
+import { Table, Header, Button } from "semantic-ui-react";
 import "./todo.css";
 import { Link } from "react-router-dom";
 
@@ -13,6 +13,13 @@ export default function List() {
     });
   }, []);
 
+  const setData = (data) => {
+    let { id, title, description, done } = data;
+    localStorage.setItem("ID", id);
+    localStorage.setItem("title", title);
+    localStorage.setItem("description", description);
+    localStorage.setItem("status", done);
+  };
   return (
     <div>
       <Header as="h2" attached="top" textAlign="center">
@@ -25,7 +32,6 @@ export default function List() {
             <Table.HeaderCell>Descrição</Table.HeaderCell>
             <Table.HeaderCell>Status</Table.HeaderCell>
             <Table.HeaderCell></Table.HeaderCell>
-            <Table.HeaderCell></Table.HeaderCell>
           </Table.Row>
         </Table.Header>
 
@@ -36,6 +42,13 @@ export default function List() {
                 <Table.Cell>{data.title}</Table.Cell>
                 <Table.Cell>{data.description}</Table.Cell>
                 <Table.Cell>{data.done ? "Feito" : "Pendente"}</Table.Cell>
+                <Table.Cell>
+                  <Link to="/update">
+                    <Button secondary onClick={() => setData(data)}>
+                      Alterar
+                    </Button>
+                  </Link>
+                </Table.Cell>
               </Table.Row>
             );
           })}
