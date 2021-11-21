@@ -13,3 +13,4 @@ Go to the project;
 ```bash
     docker-compose up
 ```
+to play with it check in your browser `http://localhost:5000/ui`
