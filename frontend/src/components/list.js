@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Table } from "semantic-ui-react";
+import { Table, Header } from "semantic-ui-react";
+import "./todo.css";
 
 export default function List() {
   const [APIData, setAPIData] = useState([]);
@@ -13,7 +14,9 @@ export default function List() {
 
   return (
     <div>
-      <h2>Tarefas</h2>
+      <Header as="h2" attached="top" textAlign="center">
+        Tarefas
+      </Header>
       <Table singleLine>
         <Table.Header>
           <Table.Row>
