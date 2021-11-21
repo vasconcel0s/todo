@@ -9,7 +9,7 @@ export default function Add() {
   const [description, setDescription] = useState("");
   const postData = () => {
     axios
-      .post(`http://localhost:5000/todo`, {
+      .post(`${process.env.REACT_APP_API_URL}/todo`, {
         title,
         description,
         done: false,

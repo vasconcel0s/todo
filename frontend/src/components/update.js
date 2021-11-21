@@ -20,7 +20,7 @@ export default function Update() {
   }, []);
   const updateAPIData = () => {
     axios
-      .put(`http://localhost:5000/todo/${id}`, {
+      .put(`${process.env.REACT_APP_API_URL}/todo/${id}`, {
         title,
         description,
         done: done,

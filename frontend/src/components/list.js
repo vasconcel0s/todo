@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 export default function List() {
   const [APIData, setAPIData] = useState([]);
   useEffect(() => {
-    axios.get(`http://localhost:5000/todo`).then((response) => {
+    axios.get(`${process.env.REACT_APP_API_URL}/todo`).then((response) => {
       console.log(response.data);
       setAPIData(response.data);
     });
@@ -21,12 +21,12 @@ export default function List() {
     localStorage.setItem("status", done);
   };
   const getData = () => {
-    axios.get(`http://localhost:5000/todo`).then((getData) => {
+    axios.get(`${process.env.REACT_APP_API_URL}/todo`).then((getData) => {
       setAPIData(getData.data);
     });
   };
   const onDelete = (id) => {
-    axios.delete(`http://localhost:5000/todo/${id}`).then(() => {
+    axios.delete(`${process.env.REACT_APP_API_URL}/todo/${id}`).then(() => {
       getData();
     });
   };
