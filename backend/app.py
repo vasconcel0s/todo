@@ -9,9 +9,7 @@ connex_app.add_api("swagger.yml")
 app = connex_app.app
 CORS(app)
 
-app.config[
-    "SQLALCHEMY_DATABASE_URI"
-] = "mysql+mysqlconnector://root:root@localhost:3306/todo"
+app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+mysqlconnector://root:root@db:3306/todo"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["PROPAGATE_EXCEPTIONS"] = True
 
@@ -21,7 +19,6 @@ def create_tables():
     db.create_all()
 
 
-if __name__ == "__main__":
-    db.init_app(app)
-    ma.init_app(app)
-    app.run(port=5000, debug=True)
+db.init_app(app)
+ma.init_app(app)
+app.run(port=5000, debug=True)
