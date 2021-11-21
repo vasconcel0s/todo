@@ -20,6 +20,17 @@ export default function List() {
     localStorage.setItem("description", description);
     localStorage.setItem("status", done);
   };
+  const getData = () => {
+    axios.get(`http://localhost:5000/todo`).then((getData) => {
+      setAPIData(getData.data);
+    });
+  };
+  const onDelete = (id) => {
+    axios.delete(`http://localhost:5000/todo/${id}`).then(() => {
+      getData();
+    });
+  };
+
   return (
     <div>
       <Header as="h2" attached="top" textAlign="center">
@@ -31,6 +42,7 @@ export default function List() {
             <Table.HeaderCell>Título</Table.HeaderCell>
             <Table.HeaderCell>Descrição</Table.HeaderCell>
             <Table.HeaderCell>Status</Table.HeaderCell>
+            <Table.HeaderCell></Table.HeaderCell>
             <Table.HeaderCell></Table.HeaderCell>
           </Table.Row>
         </Table.Header>
@@ -44,10 +56,19 @@ export default function List() {
                 <Table.Cell>{data.done ? "Feito" : "Pendente"}</Table.Cell>
                 <Table.Cell>
                   <Link to="/update">
-                    <Button secondary onClick={() => setData(data)}>
+                    <Button inverted secondary onClick={() => setData(data)}>
                       Alterar
                     </Button>
                   </Link>
+                </Table.Cell>
+                <Table.Cell>
+                  <Button
+                    inverted
+                    color="red"
+                    onClick={() => onDelete(data.id)}
+                  >
+                    Apagar
+                  </Button>
                 </Table.Cell>
               </Table.Row>
             );
