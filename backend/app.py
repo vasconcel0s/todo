@@ -9,7 +9,7 @@ connex_app.add_api("swagger.yml")
 app = connex_app.app
 CORS(app)
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+mysqlconnector://root:root@db:3306/todo"
+app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+mysqlconnector://root:root@todo-db:3306/todo"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["PROPAGATE_EXCEPTIONS"] = True
 

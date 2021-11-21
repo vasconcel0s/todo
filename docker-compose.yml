@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   db:
-    container_name: db
+    container_name: todo-db
     image: mysql:8
     # command: --default-authentication-plugin=mysql_native_password
     restart: always
@@ -16,14 +16,24 @@ services:
     #   - '3306'
     volumes:
       - todo-db:/var/lib/mysql
-  todo:
-    container_name: todo
+  todo-back:
+    container_name: todo-back
     build:
       context: ./backend
     ports:
       - '5000:5000'
     depends_on:
       - db
+  todo-front:
+    container_name: todo-front
+    build:
+      context: ./frontend
+    volumes:
+      - todo-front:/home/node/app/node_modules
+      - ./frontend/:/home/node/app
+    ports:
+      - '80:3000'
 
 volumes:
   todo-db:
+  todo-front:
