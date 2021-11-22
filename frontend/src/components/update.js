@@ -32,7 +32,7 @@ export default function Update() {
 
   return (
     <Container text>
-      <Header as="h2">Header</Header>
+      <Header as="h2">{title}</Header>
       <Form className="create-form">
         <Form.Field>
           <label>Título</label>

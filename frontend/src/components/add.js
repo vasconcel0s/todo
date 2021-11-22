@@ -20,7 +20,7 @@ export default function Add() {
   };
   return (
     <Container text>
-      <Header as="h2">Header</Header>
+      <Header as="h2">Adicionar tarefa</Header>
       <Form>
         <Form.Field>
           <label>Título</label>
