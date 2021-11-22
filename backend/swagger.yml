@@ -1,0 +1,122 @@
+openapi: 3.0.3
+info:
+  title: Todo List
+  description: REST APIs using Python3, Flask, MySQL, SQLAlchemy, OpenAPI and Connexion
+  version: "1.0.0"
+servers:
+  - url: http://localhost:5000
+    description: Rest Server showing Swagger and Connexion capability
+paths:
+  /todo:
+    get:
+      operationId: todo.getAll
+      tags:
+        - Todo
+      summary: Returns a list of items.
+      description: Returns a list of items.
+      responses:
+        "200":
+          description: Return the entire list of items.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Todo"
+    post:
+      operationId: todo.create
+      tags:
+        - Todo
+      summary: Create a new Todo
+      description: Create a new Todo
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Todo"
+      responses:
+        "201":
+          description: Todo Created successfully
+  /todo/{id}:
+    get:
+      operationId: todo.get
+      tags:
+        - Todo
+      summary: Return an Todo with given ID
+      description: Return an Todo with given ID
+      parameters:
+        - name: id
+          in: path
+          description: Todo ID
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Return an Todo with given ID
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Todo"
+    delete:
+      operationId: todo.delete
+      tags:
+        - Todo
+      summary: Delete an Todo with given ID
+      description: Delete an Todo with given ID
+      parameters:
+        - name: id
+          in: path
+          description: Todo ID
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Deleted an Todo with given ID
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Todo"
+    put:
+      operationId: todo.update
+      tags:
+        - Todo
+      summary: Update an Todo with given ID
+      description: Update an Todo with given ID
+      parameters:
+        - name: id
+          in: path
+          description: Todo ID
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Todo"
+      responses:
+        "200":
+          description: Updated an Todo with given ID
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Todo"
+
+components:
+  schemas:
+    Todo:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        title:
+          type: string
+        description:
+          type: string
+        done:
+          type: boolean
+          default: false
